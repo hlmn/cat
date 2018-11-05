@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin/layanan', 'middleware' => ['auth']], function()
 	Route::post('/create', 'LayananController@create')->name('admin.layanan.create');
 	Route::get('/destroy/{layanan}', 'LayananController@destroy')->name('admin.layanan.destroy');
 	Route::get('/update/{layanan}', 'LayananController@view')->name('admin.layanan.update');
-	Route::post('update/{layanan}', 'e.paketLayananController@update')->name('admin.layanan.update');
+	Route::post('update/{layanan}', 'LayananController@update')->name('admin.layanan.update');
 });
 
 Route::group(['prefix' => 'admin/paket', 'middleware' => ['auth']], function(){
