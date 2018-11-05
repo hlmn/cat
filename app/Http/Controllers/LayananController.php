@@ -24,7 +24,7 @@ class LayananController extends Controller
     public function create(Request $request){
     	$validator = Validator::make($request->all(), [
             'name' => 'required',
-            'foto' => 'required|image|max:2000',
+            'foto' => 'required|image|max:5000',
         ]);
 
         if ($validator->fails()) {
@@ -55,7 +55,7 @@ class LayananController extends Controller
     {
     	$this->setActive('layanan');
     	$this->setTitle('layanan');
-    	
+
     	$this->data['layanan'] = $layanan;
     	return view('admin.layanan.view', $this->data);
     }
