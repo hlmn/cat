@@ -129,8 +129,11 @@
             </li>
 
             @endif  --}}
-            <li class="" id="aktifpelayanan">
-              <a href=""><i class="fa fa-user"></i> <span>Pelayanan</span></a>
+            <li class="" id="aktifgalleries">
+              <a href="{{route('admin.galleries')}}"><i class="fa fa-user"></i> <span>Gallery</span></a>
+            </li>
+            <li class="" id="aktiflayanan">
+              <a href="{{route('admin.layanan')}}"><i class="fa fa-user"></i> <span>Layanan</span></a>
             </li>
             </ul>
           </section>
@@ -184,6 +187,9 @@
 {{-- <script src="{{url('/admindist/dist/js/sweetalert.min.js')}}"></script> --}}
 {{-- <script src="https://cdn.jzsdelivr.net/sweetalert2/5.3.8/sweetalert2.js"></script> --}}
 <script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+  } );
   $(function () {
     $('#aktif{{$active}}').toggleClass('active');
   });

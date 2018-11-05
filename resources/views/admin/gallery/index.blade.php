@@ -6,7 +6,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			{{-- {!! Breadcrumbs::render('bannerIndex') !!} --}}
+			{!! Breadcrumbs::render('gallery') !!}
 		</div>
         <div class="col-md-12">
           @if (session('status'))
@@ -18,10 +18,10 @@
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Daftar Banner</h3>
+              <h3 class="box-title">Daftar Foto</h3>
               <div class="pull-right">
 
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalFile"><span class="fa fa-plus"></span>Tambah banner</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalFile"><span class="fa fa-plus"></span> Tambah Foto</button>
                 {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalURL"><span class="fa fa-plus"></span> URL</button> --}}
                 
               </div>
@@ -30,14 +30,41 @@
               <div class="row">
                 @foreach($galleries as $gallery)
                   <div class="col-lg-3 col-md-4 col-xs-6">
-                    <a href="#" >
-                        <img class="img-fluid img-thumbnail" src="{{url('img/1.jpg')}}" style="height: 20vh; width: 100%; object-fit: cover;" alt="">
+                    <a href="#" data-toggle="modal" data-target="#modal{{$gallery->id}}">
+                        <img class="img-fluid img-thumbnail" src="{{url($gallery->path)}}" style="height: 20vh; width: 100%; object-fit: cover;" alt="">
                     </a>
+                    <div class="modal fade" id="modal{{$gallery->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Detail</h4>
+                          </div>
+                          <div class="modal-body">
+                            <img class="img-fluid img-thumbnail" src="{{url($gallery->path)}}" style="width: 100%" alt="">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <a href="{{route('admin.galleries.destroy', ['gallery' => $gallery->id])}}" onclick="return confirm('a')" type="button" class="btn btn-danger">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 @endforeach
+                
               </div>
-              
+                @if($galleries->isEmpty())
+                  <div class="col-md-12">
+                    <p><center>Tidak ada foto</center></p>
+                  </div>
+                @endif
             </div>
+            @if($galleries->isNotEmpty())
+            <div class="box-footer">
+              {{$galleries->links()}}
+            </div>
+            @endif
           </div>
          
         </div>

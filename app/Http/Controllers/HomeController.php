@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Layanan;
+use App\Galleries;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $this->data['layanan'] = Layanan::with(['paket'])->get();
+        return view('index1', $this->data);
     }
+
+    public function gallery(){
+        $this->data['gallery'] = Galleries::get();
+        return view('gallery', $this->data);
+    }
+
+
 }

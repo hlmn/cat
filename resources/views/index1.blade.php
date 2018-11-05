@@ -23,10 +23,11 @@
   </header>
   <!-- Projects Section -->
   <section id="projects" class="projects-section">
+    <h1><center>Layanan</center></h1>
     <div class="container">
 
       <!-- Featured Project Row -->
-      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+      {{-- <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
           <img class="img-fluid mb-3 mb-lg-0" src="img/wed.jpg" alt="">
         </div>
@@ -43,7 +44,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <div class="modal fade" id="wed_eko" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -118,7 +119,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                        ..
+                        {{-- {{htmlspecialchars_decode()}} --}}
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -129,20 +130,41 @@
               </div>
 
       <!-- Project One Row -->
+      @foreach($layanan as $key => $layanan)
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-6">
-          <img class="img-fluid" src="{{url('img/buffet.jpg')}}" alt="">
+          <img class="img-fluid" src="{{url($layanan->path)}}" alt="">
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 {{$key % 2 ? 'order-lg-first' : ''}}">
           <div class="bg-white text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-black text-uppercase" style="text-align: center;" >Buffet Utama</h4>
+                <h4 class="text-black text-uppercase" style="text-align: center;" >{{$layanan->name}}</h4>
                 <ul>
-                <li class="text-white-50 mb-0" ><a href="#wed_eko" data-toggle="modal">Type Ekonomis</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_hemat" data-toggle="modal">Type Hemat</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_super" data-toggle="modal">Type Super</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_deluxe" data-toggle="modal">Type Deluxe</a></li>
+                  @foreach($layanan->paket as $paket)
+                  <li class="text-white-50 mb-0" ><a href="#modal{{$paket->id}}" data-toggle="modal">{{$paket->name}}</a></li>
+
+                  <div class="modal fade" id="modal{{$paket->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">{{$paket->name}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            {!!htmlspecialchars_decode($paket->desc)!!}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+                
             </ul>
                 <hr class="d-none d-lg-block mb-0 ml-0">
               </div>
@@ -150,9 +172,9 @@
           </div>
         </div>
       </div>
-
+  @endforeach
       <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters">
+      {{-- <div class="row justify-content-center no-gutters">
         <div class="col-lg-6">
           <img class="img-fluid" style="width: 700px;height: 400px" src="img/stall.jpg" alt="">
         </div>
@@ -172,52 +194,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <!-- Project One Row -->
-      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6">
-          <img class="img-fluid" style="width: 700px;height: 400px"  src="img/nasibox.jpg" alt="">
-        </div>
-        <div class="col-lg-6">
-          <div class="bg-white text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-black text-uppercase" style="text-align: center;" >Nasi Box</h4>
-                <ul>
-                <li class="text-white-50 mb-0" ><a href="#wed_eko" data-toggle="modal">Type Ekonomis</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_hemat" data-toggle="modal">Type Hemat</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_super" data-toggle="modal">Type Super</a></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_deluxe" data-toggle="modal">Type Deluxe</a></li>
-            </ul>
-                <hr style="text-align:center" class="d-none d-lg-block mb-0 ml-0">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-       <!-- Project Two Row -->
-       <div class="row justify-content-center no-gutters">
-        <div class="col-lg-6">
-          <img class="img-fluid" style="width: 700px;height: 350px" src="img/coffee.jpg" alt="">
-        </div>
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-white text-center h-100 project">
-            <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-black text-uppercase" style="text-align: center;">Coffee Break</h4>
-                <ul>
-                <li class="text-white-50 mb-0" ><p class="text-black-50">Coffee/Tea + Creamer</p></li>
-                <li class="text-white-50 mb-0" ><p class="text-black-50">Lemper</p></li>
-                <li class="text-white-50 mb-0" ><a href="#wed_hemat" data-toggle="modal">3 Pilihan Snack</a></li>
-            </ul>
-                <hr class="d-none d-lg-block mb-0 mr-0">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
     </div>
   </section>
