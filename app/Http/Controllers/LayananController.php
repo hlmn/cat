@@ -64,7 +64,7 @@ class LayananController extends Controller
     {
     	$validator = Validator::make($request->all(), [
             'name' => 'required',
-            'foto' => 'image|max:2000',
+            'foto' => 'image|max:5000',
         ]);
 
         if ($validator->fails()) {
