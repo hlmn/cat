@@ -30,7 +30,7 @@ class HomeController extends Controller
     }
 
     public function gallery(){
-        $this->data['gallery'] = Galleries::get();
+        $this->data['gallery'] = Galleries::orderBy('created_at', 'DESC')->get();
         return view('gallery', $this->data);
     }
 

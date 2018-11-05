@@ -13,7 +13,7 @@ class GalleryController extends Controller
     public function index(Request $request){
         $this->setActive('galleries');
         $this->setTitle('galleries');
-    	$this->data['galleries'] = Galleries::paginate(9); 
+    	$this->data['galleries'] = Galleries::orderBy('created_at', 'DESC')->paginate(9); 
 
 
     	return view('admin.gallery.index', $this->data);
