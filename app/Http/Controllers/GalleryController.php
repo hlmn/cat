@@ -32,7 +32,7 @@ class GalleryController extends Controller
             $galeri->save();
 
         }
-        else return back()->with('Gagal');
+        else return back()->with('status', 'Gagal');
 
 
         return back()->with('status', 'Sukses');

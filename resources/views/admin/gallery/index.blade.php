@@ -27,11 +27,7 @@
               </div>
             </div>
             <div class="box-body">
-              @if (session('status'))
-                  <div class="alert alert-success">
-                      {{ session('status') }}
-                  </div>
-              @endif
+              
               <div class="row">
                 @foreach($galleries as $gallery)
                   <div class="col-lg-3 col-md-4 col-xs-6">
