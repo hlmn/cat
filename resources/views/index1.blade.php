@@ -24,6 +24,7 @@
   <!-- Projects Section -->
   <section id="projects" class="projects-section">
     <h1><center>Layanan</center></h1>
+    <center><a href="{{url('menu.pdf')}}">Complete Catalog</a></center>
     <div class="container">
 
       <!-- Featured Project Row -->
